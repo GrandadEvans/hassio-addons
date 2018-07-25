@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base-amd64:1.4.2
+ARG BUILD_FROM=hassioaddons/base:2.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,36 +11,38 @@ ENV LANG="C.UTF-8" \
 ARG BUILD_ARCH
 RUN \
     apk add --no-cache --virtual .build-dependencies \
-        build-base=0.5-r0 \
-        g++=6.4.0-r5 \
-        libxml2-dev=2.9.7-r0 \
-        make=4.2.1-r0 \
-        openssl-dev=1.0.2o-r0 \
-        yarn=1.3.2-r0 \
+        build-base=0.5-r1 \
+        g++=6.4.0-r8 \
+        libxml2-dev=2.9.8-r0 \
+        make=4.2.1-r2 \
+        openssl-dev=1.0.2o-r1 \
+        yarn=1.7.0-r0 \
     \
     && apk add --no-cache \
-        bind-tools=9.11.3-r0 \
-        git=2.15.2-r0 \
-        libxml2-utils=2.9.7-r0 \
-        mariadb-client=10.1.32-r0 \
-        mosquitto-clients=1.4.15-r0 \
-        ncurses=6.0_p20171125-r0 \
-        net-tools=1.60_git20140218-r1 \
-        nginx=1.12.2-r3 \
-        nmap=7.60-r2 \
-        nodejs-current=9.2.1-r1 \
-        openssh-client=7.5_p1-r8 \
-        openssl=1.0.2o-r0 \
+        bind-tools=9.12.1_p2-r0 \
+        git=2.18.0-r0 \
+        libxml2-utils=2.9.8-r0 \
+        mariadb-client=10.2.15-r0 \
+        mosquitto-clients=1.4.15-r3 \
+        ncurses=6.1-r0 \
+        net-tools=1.60_git20140218-r2 \
+        nginx=1.14.0-r0 \
+        nmap=7.70-r1 \
+        nodejs-current=9.11.1-r2 \
+        openssh-client=7.7_p1-r2 \
+        openssl=1.0.2o-r1 \
         pwgen=2.08-r0 \
-        py2-pip=9.0.1-r1 \
-        python2=2.7.14-r2 \
-        sqlite=3.21.0-r1 \
+        py2-pip=10.0.1-r0 \
+        python2=2.7.15-r0 \
+        sqlite=3.24.0-r0 \
         sshfs=2.10-r2 \
-        sudo=1.8.21_p2-r1 \
-        tmux=2.6-r0 \
+        sudo=1.8.23-r2 \
+        tmux=2.7-r0 \
         wget=1.19.5-r0 \
-        zip=3.0-r4 \
-        zsh=5.4.2-r1 \
+        zip=3.0-r5 \
+        zsh-autosuggestions=0.4.2-r0 \
+        zsh-syntax-highlighting=0.6.0-r0 \
+        zsh=5.5.1-r0 \
     \
     && pip install yamllint --no-cache-dir \
     \
@@ -56,7 +58,7 @@ RUN \
     \
     && git clone --branch master --single-branch \
         https://github.com/c9/core.git /cloud9 \
-    && git -C /cloud9 checkout 15911b3ed65e69efd27d19683a2ac90c69ca4242 \
+    && git -C /cloud9 checkout d8917f33fd7d32141d895fb7de530cfee2a416cf \
     \
     && curl -s -L \
         https://raw.githubusercontent.com/c9/install/master/link.sh | bash \
